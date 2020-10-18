@@ -51,7 +51,7 @@ const App = () => (
 ## Get started
 
 ```bash
-$ git clone https://github.com/xuya227939/corki-ui
+$ git clone https://github.com/xuya227939/corki-ui.git
 $ cd corki-ui
 $ npm install
 $ npm start
