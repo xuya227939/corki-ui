@@ -1,0 +1,39 @@
+.corki-slider-control {
+    width: 100%;
+    vertical-align: middle;
+    --thumb-size: 20px;
+    cursor: pointer;
+}
+
+.corki-tooltip-inner {
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+    left: 1px;
+    background-color: hsl(203, 10%, 10%);
+    color: white;
+    opacity: 1;
+    pointer-events: none;
+    top: calc(1 * 20px - 20px);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.8;
+    min-width: 30px;
+    min-height: 32px;
+    padding: 6px 8px;
+}
+
+.corki-tooltip-arrow {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    left: 0;
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin: auto;
+    background-color: hsl(203, 10%, 10%);
+    content: '';
+    pointer-events: auto;
+    transform: translateY(6.53553391px) rotate(45deg);
+}

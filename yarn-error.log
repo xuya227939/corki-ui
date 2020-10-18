@@ -1,0 +1,70 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn install
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Applications/Wireshark.app/Contents/MacOS:/Users/user/android-sdks/platform-tools:/Users/user/android-sdks/tools
+
+Yarn version: 
+  1.7.0
+
+Node version: 
+  11.4.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: http://192.168.10.131:8081/repository/F2EyqnGroup/babel-cli: ETIMEDOUT
+      at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:135339:19)
+      at listOnTimeout (timers.js:324:15)
+      at processTimers (timers.js:268:5)
+
+npm manifest: 
+  {
+    "name": "react-verificationcode-s",
+    "version": "1.0.4",
+    "description": "",
+    "main": "lib/index.js",
+    "scripts": {
+      "build": "webpack --progress"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/xuya227939/react-verificationcode.git"
+    },
+    "keywords": [
+      "react"
+    ],
+    "readmeFilename": "README.md",
+    "author": "xuya227939",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/xuya227939/react-verificationcode/issues"
+    },
+    "homepage": "https://github.com/xuya227939/react-verificationcode#readme",
+    "dependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-core": "^6.26.3",
+      "babel-loader": "7.1.4",
+      "babel-plugin-import": "^1.8.0",
+      "babel-plugin-istanbul": "^5.0.1",
+      "babel-plugin-transform-class-properties": "^6.24.1",
+      "babel-preset-env": "^1.7.0",
+      "babel-preset-es2015": "^6.24.1",
+      "babel-preset-react": "^6.24.1",
+      "babel-preset-stage-3": "^6.24.1",
+      "clean-webpack-plugin": "^0.1.19",
+      "css-loader": "^1.0.0",
+      "react": "^16.5.0",
+      "react-dom": "^16.5.0",
+      "style-loader": "^0.23.0",
+      "webpack": "^4.18.0",
+      "webpack-cli": "^3.1.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

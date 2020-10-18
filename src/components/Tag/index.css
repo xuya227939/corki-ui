@@ -1,0 +1,50 @@
+.corki-tag {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, .65);
+    list-style: none;
+    display: inline-block;
+    height: auto;
+    margin: 0 8px 0 0;
+    padding: 0 7px;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+    background: #fafafa;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    cursor: default;
+    opacity: 1;
+}
+
+.corki-tag-green {
+    color: #52c41a;
+    background: #f6ffed;
+    border-color: #b7eb8f;
+}
+
+.corki-tag-red {
+    color: #f5222d;
+    background: #fff1f0;
+    border-color: #ffa39e;
+}
+
+.corki-tag-blue {
+    color: #1890ff;
+    background: #e6f7ff;
+    border-color: #91d5ff;
+}
+
+.corki-tag-lime {
+    color: #a0d911;
+    background: #fcffe6;
+    border-color: #eaff8f;
+}
+
+.corki-tag-has-color {
+    color: #fff;
+    border-color: transparent;
+}
+
+.corki-tag-hidden {
+    display: none;
+}

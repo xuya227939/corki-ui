@@ -1,0 +1,48 @@
+.corki-popper {
+    display: unset;
+}
+
+#corki-tooltip {
+    min-width: 30px;
+    min-height: 32px;
+    padding: 6px 8px;
+    color: #fff;
+    text-align: left;
+    text-decoration: none;
+    word-wrap: break-word;
+    background-color: rgba(0, 0, 0);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 99999;
+    position: absolute;
+}
+
+#corki-arrow,
+#corki-arrow::before {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: -1;
+}
+
+#corki-arrow::before {
+    content: '';
+    transform: rotate(45deg);
+    background-color: rgba(0, 0, 0);
+}
+
+#corki-tooltip[data-popper-placement^='top'] > #corki-arrow {
+    bottom: -4px;
+}
+
+#corki-tooltip[data-popper-placement^='bottom'] > #corki-arrow {
+    top: -4px;
+}
+
+#corki-tooltip[data-popper-placement^='left'] > #corki-arrow {
+    right: -4px;
+}
+
+#corki-tooltip[data-popper-placement^='right'] > #corki-arrow {
+    left: -4px;
+}

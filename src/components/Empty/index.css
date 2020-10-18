@@ -1,0 +1,49 @@
+.corki-empty {
+    margin: 0 8px;
+    font-size: 14px;
+    line-height: 1.5715;
+    text-align: center;
+}
+
+.corki-empty-image {
+    height: 100px;
+    margin-bottom: 8px;
+}
+
+.corki-empty-img-default {
+    height: 100%;
+    margin: auto;
+}
+
+.corki-empty-img-default-ellipse {
+    fill-opacity: .8;
+    fill: #f5f5f5;
+}
+
+.corki-empty-img-default-path-1 {
+    fill: #aeb8c2;
+}
+
+.corki-empty-img-default-path-2 {
+    /* fill: url(https://ant.design/index-26129f3b.css#linearGradient-1); */
+}
+
+.corki-empty-img-default-path-3 {
+    fill: #f5f5f7;
+}
+
+.corki-empty-img-default-path-4 {
+    fill: #dce0e6;
+}
+
+.corki-empty-img-default-path-5 {
+    fill: #dce0e6;
+}
+
+.corki-empty-img-default-g {
+    fill: #fff;
+}
+
+.corki-empty-description {
+    margin: 0;
+}
