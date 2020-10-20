@@ -1,0 +1,51 @@
+.corki-alert {
+    box-sizing: border-box;
+    margin: 0;
+    color: rgba(0, 0, 0, .85);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    list-style: none;
+    font-feature-settings: "tnum";
+    position: relative;
+    padding: 8px 15px 8px 37px;
+    word-wrap: break-word;
+    border-radius: 2px;
+}
+
+.corki-alert-no-icon {
+    padding: 8px 15px;
+}
+
+.corki-alert-success {
+    background-color: #f6ffed;
+    border: 1px solid #b7eb8f;
+}
+
+.corki-alert-info {
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+}
+
+.corki-alert-warning {
+    background-color: #fffbe6;
+    border: 1px solid #ffe58f;
+}
+
+.corki-alert-error {
+    background-color: #fff2f0;
+    border: 1px solid #ffccc7;
+}
+
+.corki-alert-message {
+    color: rgba(0, 0, 0, .85);
+}
+
+.corki-alert-description {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.corki-alert-with-description {
+    display: block;
+}

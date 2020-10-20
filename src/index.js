@@ -31,3 +31,5 @@ export { default as Tag } from './components/Tag/index.js';
 export { default as Slider } from './components/Slider/index.js';
 
 export { default as Tooltip } from './components/Tooltip/index.js';
+
+export { default as Alert } from './components/Alert/index.js';
