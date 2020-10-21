@@ -9,7 +9,8 @@ Modal 弹窗
 | confirmText | 确认文案 | string | '确认' |
 | cancel | 取消回调 | Function |  |
 | confirm | 确认回调 | Function |  |
-| children | 内容 | React.node | 
+| children | 内容 | React.node | |
+| keyboard | 是否支持键盘 esc 关闭 | boolean | true |
 
 ```jsx
 import { Modal, Button } from 'corki-ui';
