@@ -5,6 +5,7 @@ Preview 图片预览，可缩小、放大、拖拽。
 | --- | --- | --- | --- |
 | url | 图片链接，必须是在网络上能够打开 | string |  |
 | onClose | 关闭方法 | func | |
+| keyboard | 是否支持键盘 esc 关闭 | boolean | true |
 
 ```jsx
 import { Preview, Button } from 'corki-ui';
@@ -30,19 +31,16 @@ class App extends React.Component {
     }
 
     render() {
-        const { isShowPreView } = this.state;
         return (
             <div>
                 <Button type="primary" onClick={this.showPreview}>
                     Open Preview
                 </Button>
-                {
-                    isShowPreView &&
-                    <Preview
-                        url="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/corki-ui-logo.jpeg"
-                        onClose={this.onClose}
-                    />
-                }
+                <Preview
+                    url="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/corki-ui-logo.jpeg"
+                    onClose={this.onClose}
+                    visible={this.state.isShowPreView}
+                />
             </div>
         );
     }

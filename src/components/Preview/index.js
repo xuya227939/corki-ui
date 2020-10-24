@@ -36,6 +36,9 @@ class Preview extends React.Component {
         } else {
             document.body.onmousewheel = this.onScroll;
         }
+
+        const { keyboard = true } = this.props;
+        if(keyboard) document.addEventListener('keydown', this.sendCancel);
     }
 
     // 销毁
@@ -44,7 +47,14 @@ class Preview extends React.Component {
         document.onmouseup = null;
         document.body.onmousewheel = null;
         document.removeEventListener('DOMMouseScroll', this.onScroll, false);
+
+        const { keyboard = true } = this.props;
+        if(keyboard) document.removeEventListener('keydown', this.sendCancel);
     };
+
+    sendCancel = (e) => {
+        if(e.keyCode === 27) this.props.onClose();
+    }
 
     // 缩小或放大
     onScroll = (e) => {
@@ -138,35 +148,46 @@ class Preview extends React.Component {
 
     render() {
         const { imgStyle, isShowRate, num } = this.state;
-        const { url, onClose } = this.props;
+        const { url, onClose, visible = false } = this.props;
+
+        if(visible) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
         return (
-            <div className="corki-preview">
-                <div className="corki-preview-content">
-                    <div className="corki-preview-img">
-                        <img
-                            draggable="false"
-                            alt="img"
-                            className="corki-img corki-select-cursor"
-                            onMouseDown={this.handlerImgDown}
-                            src={url}
-                            onLoad={this.onload}
-                            style={imgStyle}
-                        />
+            <div>
+                {
+                    visible && 
+                    <div className="corki-preview">
+                        <div className="corki-preview-content">
+                            <div className="corki-preview-img">
+                                <img
+                                    draggable="false"
+                                    alt="img"
+                                    className="corki-img corki-select-cursor"
+                                    onMouseDown={this.handlerImgDown}
+                                    src={url}
+                                    onLoad={this.onload}
+                                    style={imgStyle}
+                                />
+                            </div>
+                            {
+                                isShowRate &&
+                                <div className="corki-preview-tooltip">{num}%</div>
+                            }
+                            <div className="corki-preview-close" onClick={onClose}>
+                                <img
+                                    alt="img"
+                                    width="32"
+                                    height="32"
+                                    src="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/close.png"
+                                />
+                            </div>
+                        </div>
+                        <div className="corki-preview-mask" />
                     </div>
-                    {
-                        isShowRate &&
-                        <div className="corki-preview-tooltip">{num}%</div>
-                    }
-                    <div className="corki-preview-close" onClick={onClose}>
-                        <img
-                            alt="img"
-                            width="32"
-                            height="32"
-                            src="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/close.png"
-                        />
-                    </div>
-                </div>
-                <div className="corki-preview-mask" />
+                }
             </div>
         );
     }
@@ -174,7 +195,9 @@ class Preview extends React.Component {
 
 Preview.propTypes = {
     url: PropTypes.string,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    visible: PropTypes.bool,
+    keyboard: PropTypes.bool
 };
 
 module.exports = Preview;
