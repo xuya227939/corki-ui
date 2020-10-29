@@ -212,12 +212,12 @@ class Preview extends React.Component {
                                 isShowRate &&
                                 <div className="corki-preview-tooltip">{this.num}%</div>
                             }
-                            <div className="corki-preview-btn">
+                            <div styleName="corki-preview-btn">
                                 <img
                                     alt="img"
                                     width="32"
                                     height="32"
-                                    className="corki-preview-btn-img"
+                                    styleName="corki-preview-btn-img"
                                     onClick={this.anticlockwise}
                                     src="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/anticlockwise.png"
                                 />
@@ -225,7 +225,7 @@ class Preview extends React.Component {
                                     alt="img"
                                     width="32"
                                     height="32"
-                                    className="corki-preview-btn-img"
+                                    styleName="corki-preview-btn-img"
                                     onClick={this.clockwise}
                                     src="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/clockwise.png"
                                 />
@@ -233,7 +233,7 @@ class Preview extends React.Component {
                                     alt="img"
                                     width="24"
                                     height="24"
-                                    className="corki-preview-btn-img"
+                                    styleName="corki-preview-btn-img"
                                     onClick={() => {
                                         this.reset();
                                         onClose();

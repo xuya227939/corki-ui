@@ -22,7 +22,7 @@
 }
 
 .corki-preview-tooltip {
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(0,0,0,.8);
     border-radius: 10px;
     color: #fff;
     font-size: 12px;
@@ -43,30 +43,12 @@
     cursor: grab;
 }
 
-.corki-preview-btn {
+.corki-preview-close {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 12px;
-    box-sizing: border-box;
-    margin: 0;
-    font-size: 14px;
-    font-variant: tabular-nums;
-    line-height: 1.5715;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    color: hsla(0, 0%, 100%, .85);
-    list-style: none;
-    background: rgba(0, 0, 0, .1);
-    pointer-events: auto;
-}
-
-.corki-preview-btn-img {
+    padding: 24px;
     cursor: pointer;
-    margin: 0 12px;
 }
 
 .corki-preview-mask {
@@ -75,7 +57,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0,0,0,0.65);
     opacity: .6;
     z-index: 9998;
 }

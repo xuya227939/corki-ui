@@ -6,22 +6,27 @@ const USER_AGENT = navigator.userAgent;
 class Preview extends React.Component {
     constructor(props) {
         super(props);
+        // 是否按下
         this.isDown = false;
         this.IMG_WIDTH = 300;
         this.IMG_HEIGHT = 300;
+        // 放大或缩小比例
         this.zoomOut = 0;
-        this.num = 0;
-        this.rotate = 0;
         this.state = {
+            // 移动的时候，更改距离和放大缩小
             imgStyle: {
                 position: 'relative',
                 left: '0px',
-                top: '0px',
-                transform: 'rotate(0deg)'
+                top: '0px'
             },
-            isShowRate: false
+            // 放大缩小比例
+            num: 0,
+            // 是否显示缩小放大比例
+            isShowRate: false,
         };
+        // 图片按下事件
         this.handlerImgDown = this.handlerImgDown.bind(this);
+        // 图片加载
         this.onload = this.onload.bind(this);
     }
 
@@ -36,6 +41,7 @@ class Preview extends React.Component {
         if(keyboard) document.addEventListener('keydown', this.sendCancel);
     }
 
+    // 销毁
     componentWillUnmount() {
         document.onmousemove = null;
         document.onmouseup = null;
@@ -44,42 +50,20 @@ class Preview extends React.Component {
 
         const { keyboard = true } = this.props;
         if(keyboard) document.removeEventListener('keydown', this.sendCancel);
-    }
-
-    reset() {
-        this.isDown = false;
-        this.IMG_WIDTH = 300;
-        this.IMG_HEIGHT = 300;
-        this.zoomOut = 0;
-        this.num = 0;
-        this.rotate = 0;
-
-        this.setState({
-            imgStyle: {
-                position: 'relative',
-                left: '0px',
-                top: '0px',
-                transform: 'rotate(0deg)'
-            },
-            isShowRate: false
-        });
-    }
+    };
 
     sendCancel = (e) => {
-        if(e.keyCode === 27) {
-            this.reset();
-            this.props.onClose();
-        }
+        if(e.keyCode === 27) this.props.onClose();
     }
 
+    // 缩小或放大
     onScroll = (e) => {
-        const { imgStyle } = this.state;
+        const { num, imgStyle } = this.state;
         const event = e || window.event;
         let style = {};
         let wheelDelta;
         let wheelDeltaNumber;
         let rate;
-
         // firefox and safari 的滚动轴值不一样，其余的都是1200
         if (USER_AGENT.indexOf('Firefox') > -1) {
             // wheelDelta = 3 or -3
@@ -94,33 +78,33 @@ class Preview extends React.Component {
             wheelDelta = event.wheelDelta;
             wheelDeltaNumber = 1200;
         }
-
-        if ((this.num === 100 && wheelDelta > 0) || (this.num === 1 && wheelDelta < 0)) {
+        // 如果比例达到100或者为1的时候，停止继续放大或缩小 > 0 放大, < 0 缩小
+        if ((num === 100 && wheelDelta > 0) || (num === 1 && wheelDelta < 0)) {
             return;
         }
-
+        // 计算放大或缩小比例
         this.zoomOut = (this.zoomOut + wheelDelta / wheelDeltaNumber);
         style.width = this.IMG_WIDTH * (1 + this.zoomOut) + 'px';
         style.height = this.IMG_HEIGHT * (1 + this.zoomOut) + 'px';
         style.top = imgStyle.top;
         style.left = imgStyle.left;
         style.position = 'relative';
-        style.transform = `rotate(${this.rotate}deg)`;
-
+        // 换算成百分比，显示
         if (this.zoomOut.toFixed(1) * 100 < 0) {
             rate = 10 + (this.zoomOut.toFixed(1) * 100) / 10;
         } else {
             rate = parseInt(this.zoomOut.toFixed(1) * 100);
         }
-
+        // 不允许出现百分之0
         rate = rate === 0 ? rate = 10 : rate;
-        this.num = rate;
         this.setState({
             imgStyle: style,
+            num: rate,
             isShowRate: true
         });
     }
 
+    // 图片按下事件
     handlerImgDown = (e) => {
         e.preventDefault();
         const corkiImg = document.getElementsByClassName('corki-img');
@@ -130,6 +114,7 @@ class Preview extends React.Component {
         this.offsetLeft = parseInt(corkiImg[0].offsetLeft);
         this.offsetTop = parseInt(corkiImg[0].offsetTop);
         this.handlerImgMove();
+        // 移除事件
         document.onmouseup = () => {
             document.onmousemove = null;
             document.onmouseup = null;
@@ -137,6 +122,7 @@ class Preview extends React.Component {
         };
     }
 
+    // 图片移动
     handlerImgMove = () => {
         document.onmousemove = (e) => {
             if (this.isDown) {
@@ -147,7 +133,6 @@ class Preview extends React.Component {
                 style.left = e.clientX - (this.currentX - this.offsetLeft) + 'px';
                 style.top = e.clientY - (this.currentY - this.offsetTop) + 'px';
                 style.position = 'relative';
-                style.transform = `rotate(${this.rotate}deg)`;
                 this.setState({
                     imgStyle: style
                 });
@@ -155,35 +140,14 @@ class Preview extends React.Component {
         };
     }
 
+    // 获取图片真实宽高
     onload = (e) => {
         this.IMG_WIDTH = e.target.width;
         this.IMG_HEIGHT = e.target.height;
     }
 
-    anticlockwise = () => {
-        this.rotate += 45;
-
-        const { imgStyle } = this.state;
-        let style = {
-            ...imgStyle,
-            transform: `rotate(${this.rotate}deg)`
-        };
-        this.setState({ imgStyle: style });
-    }
-
-    clockwise = () => {
-        this.rotate -= 45;
-
-        const { imgStyle } = this.state;
-        let style = {
-            ...imgStyle,
-            transform: `rotate(${this.rotate}deg)`
-        };
-        this.setState({ imgStyle: style });
-    }
-
     render() {
-        const { imgStyle, isShowRate } = this.state;
+        const { imgStyle, isShowRate, num } = this.state;
         const { url, onClose, visible = false } = this.props;
 
         if(visible) {
@@ -210,34 +174,13 @@ class Preview extends React.Component {
                             </div>
                             {
                                 isShowRate &&
-                                <div className="corki-preview-tooltip">{this.num}%</div>
+                                <div className="corki-preview-tooltip">{num}%</div>
                             }
-                            <div className="corki-preview-btn">
+                            <div className="corki-preview-close" onClick={onClose}>
                                 <img
                                     alt="img"
                                     width="32"
                                     height="32"
-                                    className="corki-preview-btn-img"
-                                    onClick={this.anticlockwise}
-                                    src="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/anticlockwise.png"
-                                />
-                                <img
-                                    alt="img"
-                                    width="32"
-                                    height="32"
-                                    className="corki-preview-btn-img"
-                                    onClick={this.clockwise}
-                                    src="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/clockwise.png"
-                                />
-                                <img
-                                    alt="img"
-                                    width="24"
-                                    height="24"
-                                    className="corki-preview-btn-img"
-                                    onClick={() => {
-                                        this.reset();
-                                        onClose();
-                                    }}
                                     src="//sight-world.oss-cn-hangzhou.aliyuncs.com/corki-ui/close.png"
                                 />
                             </div>
