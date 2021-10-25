@@ -14,8 +14,6 @@ I suggest that you use this code as an inspiration, and I'm not going to maintai
 
 </div>
 
-[测试](https://m.tb.cn/h.fUSwhNf)
-
 ## Supported Environment
 
 Modern tourist and IE9+
